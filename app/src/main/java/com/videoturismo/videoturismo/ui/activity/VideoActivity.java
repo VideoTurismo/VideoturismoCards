@@ -13,9 +13,12 @@ public class VideoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_video);
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_video);
+
 
 
         VideoView vv = (VideoView)findViewById(R.id.videoViewPelicula);
@@ -25,6 +28,7 @@ public class VideoActivity extends AppCompatActivity {
         Log.d("Video",path);
         vv.setVideoPath(path);
         vv.start();
+
 
 
     }
