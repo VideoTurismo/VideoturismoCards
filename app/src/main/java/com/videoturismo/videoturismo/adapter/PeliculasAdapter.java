@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -31,6 +30,7 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.View
         public TextView textViewtitulo;
         public ImageView portadaView;
         public VideoView videoViewPelicula;
+        public TextView tvsinopsis;
 
 
 
@@ -38,7 +38,8 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.View
             super(v);
             textViewtitulo = (TextView) v.findViewById(R.id.tvtitulo);
             portadaView  = (ImageView) v.findViewById(R.id.ivportada);
-            videoViewPelicula = (VideoView) v.findViewById(R.id.vvpelicula);
+            //videoViewPelicula = (VideoView) v.findViewById(R.id.vvpelicula);
+            tvsinopsis = (TextView)v.findViewById(R.id.tvsinopsis);
 
         }
     }
@@ -86,8 +87,19 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.View
                 .load("http://192.168.5.161/streaming"+pelis.getRutaPortada().replaceAll(" ","%20"))
                 .fit()
                 .into(holder.portadaView);
-        holder.videoViewPelicula.setVideoPath("http://192.168.5.161/streaming"+pelis.getRutaPelicula().replaceAll(" ","%20"));
-        holder.videoViewPelicula.setMediaController(new MediaController(context));
+
+
+        if(pelis.getSinopsis().length()>220){
+            holder.tvsinopsis.setText(pelis.getSinopsis().substring(0,219)+".....");
+        }else{
+            holder.tvsinopsis.setText(pelis.getSinopsis());
+        }
+
+
+
+
+//        holder.videoViewPelicula.setVideoPath("http://192.168.5.161/streaming"+pelis.getRutaPelicula().replaceAll(" ","%20"));
+//        holder.videoViewPelicula.setMediaController(new MediaController(context));
 //        holder.videoViewPelicula.start();
 
     }
