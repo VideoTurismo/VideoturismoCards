@@ -1,5 +1,6 @@
 package com.videoturismo.videoturismo.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -41,22 +42,13 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
+        rv = (RecyclerView)findViewById(R.id.recycler_view_peliculas);
+        rv.setHasFixedSize(true);
+        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(MainActivity.this);
 
-
-
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rv = (RecyclerView)findViewById(R.id.recycler_view_peliculas);
-                rv.setHasFixedSize(true);
-                LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(MainActivity.this);
-
-                rv.setLayoutManager(mLinearLayoutManager);
-                mPeliculasAdapter = new PeliculasAdapter(MainActivity.this);
-                rv.setAdapter(mPeliculasAdapter);
+        rv.setLayoutManager(mLinearLayoutManager);
+        mPeliculasAdapter = new PeliculasAdapter(MainActivity.this);
+        rv.setAdapter(mPeliculasAdapter);
 
 //                call = VideoTurismoAdapter.getApiService().getpeliculasEstrenos();
 //                call.enqueue(MainActivity.this);
@@ -72,9 +64,27 @@ public class MainActivity extends AppCompatActivity
 //                call.enqueue(MainActivity.this);
 //                call = VideoTurismoAdapter.getApiService().getpeliculasRomanticas();
 //                call.enqueue(MainActivity.this);
-                call = VideoTurismoAdapter.getApiService().getpeliculasSeries();
-                call.enqueue(MainActivity.this);
+        call = VideoTurismoAdapter.getApiService().getpeliculasSeries();
+        call.enqueue(MainActivity.this);
 
+//        rv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
+
+
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this,VideoActivity.class);
+                i.putExtra
+                        ("URL","http://192.168.5.161/streaming/Documentales/Dr. Jeff Rocky Mountain Vet-Ep-5- Mile-High Mutt.mp4".replaceAll(" ","%20"));
+
+                startActivity(i);
 
             }
         });
