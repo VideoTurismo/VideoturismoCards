@@ -12,14 +12,14 @@
 
 
     <LinearLayout
-        android:layout_width="347dp"
-        android:layout_height="211dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:padding="8dp">
 
 
         <LinearLayout
-            android:layout_width="124dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:elevation="0dp"
             android:orientation="vertical">
 
@@ -41,14 +41,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="12"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvsinopsis"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
                 android:text="" />
         </LinearLayout>
 

@@ -22,8 +22,6 @@ public class VideoActivity extends AppCompatActivity {
 
 
         VideoView vv = (VideoView)findViewById(R.id.videoViewPelicula);
-
-
         String path = getIntent().getStringExtra("URL");
         Log.d("Video",path);
         vv.setVideoPath(path);

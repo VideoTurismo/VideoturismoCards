@@ -1,6 +1,7 @@
 package com.videoturismo.videoturismo.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.VideoView;
 import com.squareup.picasso.Picasso;
 import com.videoturismo.videoturismo.R;
 import com.videoturismo.videoturismo.model.Peliculas;
+import com.videoturismo.videoturismo.ui.activity.VideoActivity;
 
 import java.util.ArrayList;
 
@@ -75,11 +77,11 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.View
     // Este método reemplaza el contenido de cada view,
     // para cada elemento de la lista (nótese el argumento position)
     @Override
-    public void onBindViewHolder(ViewHolder holder, int i) {
+    public void onBindViewHolder(final ViewHolder holder, int i) {
         // - obtenemos un elemento del dataset según su posición
         // - reemplazamos el contenido de los views según tales datos
 
-        Peliculas pelis = mDataSet.get(i);
+        final Peliculas pelis = mDataSet.get(i);
 
 
         holder.textViewtitulo.setText(pelis.getTitulo());
@@ -97,11 +99,16 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.View
 
 
 
+        //evento de click en las cards
+        holder.portadaView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, VideoActivity.class);
+                i.putExtra("URL","http://192.168.5.161/streaming"+pelis.getRutaPelicula().replaceAll(" ","%20"));
+                context.startActivity(i);
 
-//        holder.videoViewPelicula.setVideoPath("http://192.168.5.161/streaming"+pelis.getRutaPelicula().replaceAll(" ","%20"));
-//        holder.videoViewPelicula.setMediaController(new MediaController(context));
-//        holder.videoViewPelicula.start();
-
+            }
+        });
     }
 
     // Método que define la cantidad de elementos del RecyclerView

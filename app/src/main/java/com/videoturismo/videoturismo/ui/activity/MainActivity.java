@@ -8,30 +8,34 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.videoturismo.videoturismo.R;
 import com.videoturismo.videoturismo.adapter.PeliculasAdapter;
-import com.videoturismo.videoturismo.io.VideoTurismoAdapter;
 import com.videoturismo.videoturismo.model.Peliculas;
 
 import java.util.ArrayList;
 
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, Callback<ArrayList<Peliculas>> {
+        implements NavigationView.OnNavigationItemSelectedListener {
     private Call<ArrayList<Peliculas>> call;
     private RecyclerView rv;
     private PeliculasAdapter mPeliculasAdapter;
+    private ImageView accion;
+    private ImageView comedia;
+    private ImageView drama;
+    private ImageView documentales;
+    private ImageView familiar;
+    private ImageView estrenos;
+    private ImageView romaticas;
+    private ImageView infantil;
 
 
     @Override
@@ -42,14 +46,96 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-        rv = (RecyclerView)findViewById(R.id.recycler_view_peliculas);
-        rv.setHasFixedSize(true);
-        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(MainActivity.this);
+        accion =(ImageView) findViewById(R.id.accion);
+        comedia = (ImageView) findViewById(R.id.comedia);
+        drama =(ImageView) findViewById(R.id.drama);
+        documentales = (ImageView) findViewById(R.id.docs);
+        familiar =(ImageView) findViewById(R.id.fam);
+        estrenos = (ImageView) findViewById(R.id.estrenos);
+        romaticas =(ImageView) findViewById(R.id.romaticas);
+        infantil = (ImageView) findViewById(R.id.infantiles);
 
-        rv.setLayoutManager(mLinearLayoutManager);
-        mPeliculasAdapter = new PeliculasAdapter(MainActivity.this);
-        rv.setAdapter(mPeliculasAdapter);
 
+
+
+
+
+        accion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, GenerosActivity.class);
+                i.putExtra("Genero","Accion");
+                startActivity(i);
+            }
+        });
+        comedia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, GenerosActivity.class);
+                i.putExtra("Genero","Comedia");
+                startActivity(i);
+            }
+        });
+        drama.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, GenerosActivity.class);
+                i.putExtra("Genero","Drama");
+                startActivity(i);
+            }
+        });
+        documentales.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, GenerosActivity.class);
+                i.putExtra("Genero","Documentales");
+                startActivity(i);
+            }
+        });
+        familiar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, GenerosActivity.class);
+                i.putExtra("Genero","Familiar");
+                startActivity(i);
+            }
+        });
+        estrenos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, GenerosActivity.class);
+                i.putExtra("Genero","Estrenos");
+                startActivity(i);
+            }
+        });
+        romaticas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, GenerosActivity.class);
+                i.putExtra("Genero","Romanticas");
+                startActivity(i);
+            }
+        });
+        infantil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, GenerosActivity.class);
+                i.putExtra("Genero","Infantiles");
+                startActivity(i);
+            }
+        });
+
+
+
+
+//        rv = (RecyclerView)findViewById(R.id.recycler_view_peliculas);
+//        rv.setHasFixedSize(true);
+//        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(MainActivity.this);
+//
+//        rv.setLayoutManager(mLinearLayoutManager);
+//        mPeliculasAdapter = new PeliculasAdapter(MainActivity.this);
+//        rv.setAdapter(mPeliculasAdapter);
+//
 //                call = VideoTurismoAdapter.getApiService().getpeliculasEstrenos();
 //                call.enqueue(MainActivity.this);
 //                call = VideoTurismoAdapter.getApiService().getpeliculasAccion();
@@ -64,8 +150,9 @@ public class MainActivity extends AppCompatActivity
 //                call.enqueue(MainActivity.this);
 //                call = VideoTurismoAdapter.getApiService().getpeliculasRomanticas();
 //                call.enqueue(MainActivity.this);
-        call = VideoTurismoAdapter.getApiService().getpeliculasSeries();
-        call.enqueue(MainActivity.this);
+
+//        call = VideoTurismoAdapter.getApiService().getpeliculasSeries();
+//        call.enqueue(MainActivity.this);
 
 //        rv.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -73,6 +160,8 @@ public class MainActivity extends AppCompatActivity
 //
 //            }
 //        });
+
+        //startActivity(new Intent(this, GenerosActivity.class));
 
 
 
@@ -156,18 +245,4 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public void onResponse(Call<ArrayList<Peliculas>> call, Response<ArrayList<Peliculas>> response) {
-        if(response.isSuccessful()){
-            ArrayList<Peliculas> pelis = response.body();
-
-            mPeliculasAdapter.setDataSet(pelis);
-            Log.d("OnResponse peliculas", "Size of peliculas ="+ pelis.size());
-        }
-    }
-
-    @Override
-    public void onFailure(Call<ArrayList<Peliculas>> call, Throwable t) {
-
-    }
 }

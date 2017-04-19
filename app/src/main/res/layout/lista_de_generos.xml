@@ -3,11 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <VideoView
-        android:id="@+id/videoViewPelicula"
+    <include
+        layout="@layout/content_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </VideoView>
+        android:layout_height="match_parent"
+        />
 
 </LinearLayout>
