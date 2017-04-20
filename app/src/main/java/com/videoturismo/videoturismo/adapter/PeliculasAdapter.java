@@ -91,8 +91,11 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.View
                 .into(holder.portadaView);
 
 
-        if(pelis.getSinopsis().length()>220){
+        if(pelis.getSinopsis().isEmpty()){
+            holder.tvsinopsis.setText("");
+        }else if(pelis.getSinopsis().length()>220){
             holder.tvsinopsis.setText(pelis.getSinopsis().substring(0,219)+".....");
+
         }else{
             holder.tvsinopsis.setText(pelis.getSinopsis());
         }

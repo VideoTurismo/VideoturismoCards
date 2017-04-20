@@ -36,6 +36,10 @@ public class Peliculas {
     }
 
     public String getSinopsis() {
+        if (sinopsis.isEmpty()) {
+            setSinopsis("algo");
+            return sinopsis;
+        }
         return sinopsis;
     }
 

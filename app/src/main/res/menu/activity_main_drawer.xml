@@ -1,35 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Peliculas">
+        <menu>
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
-    </group>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_accion"
+                    android:title="Accion" />
+                <item
+                    android:id="@+id/nav_comedia"
+                    android:title="Comedia" />
+                <item
+                    android:id="@+id/nav_documental"
+                    android:title="Documental" />
+                <item
+                    android:id="@+id/nav_drama"
+                    android:title="Drama" />
+                <item
+                    android:id="@+id/nav_familiar"
+                    android:title="Familiar" />
+                <item
+                    android:id="@+id/nav_romanticas"
+                    android:title="Romanticas" />
+                <item
+                    android:id="@+id/nav_infantiles"
+                    android:title="Infantiles" />
+                <item
+                    android:id="@+id/nav_estrenos"
+                    android:title="Estrenos" />
 
-    <item android:title="Communicate">
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Musica">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_pop"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="Pop" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_rock"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="Rock" />
+            <item
+                android:id="@+id/nav_clasicas"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Clasicas" />
+            <item
+                android:id="@+id/nav_regionales"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Regionales" />
         </menu>
     </item>
 
