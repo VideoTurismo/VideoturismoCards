@@ -1,6 +1,8 @@
 package com.videoturismo.videoturismo.ui.activity;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -11,7 +13,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.videoturismo.videoturismo.R;
@@ -30,14 +35,10 @@ public class MainActivity extends AppCompatActivity
     private Call<ArrayList<Peliculas>> call;
     private RecyclerView rv;
     private PeliculasAdapter mPeliculasAdapter;
-    private ImageView accion;
-    private ImageView comedia;
-    private ImageView drama;
-    private ImageView documentales;
-    private ImageView familiar;
-    private ImageView estrenos;
-    private ImageView romaticas;
-    private ImageView infantil;
+    private FloatingActionButton fab;
+    private int iconImage;
+    private int imagenGenero;
+    private String nombreGenero;
 
 
     @Override
@@ -48,10 +49,9 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-
-
-        rv = (RecyclerView)findViewById(R.id.recycler_view_peliculas);
-        rv.setHasFixedSize(true);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        rv = (RecyclerView) findViewById(R.id.recycler_view_peliculas);
+        rv.setHasFixedSize(false);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
 
         rv.setLayoutManager(mLinearLayoutManager);
@@ -59,86 +59,18 @@ public class MainActivity extends AppCompatActivity
         rv.setAdapter(mPeliculasAdapter);
 
 
+        imagenGenero = R.drawable.estrenos;
+        nombreGenero = "Estrenos";
+
         call = VideoTurismoAdapter.getApiService().getpeliculasEstrenos();
         call.enqueue(this);
-//        accion =(ImageView) findViewById(R.id.accion);
-//        comedia = (ImageView) findViewById(R.id.comedia);
-//        drama =(ImageView) findViewById(R.id.drama);
-//        documentales = (ImageView) findViewById(R.id.docs);
-//        familiar =(ImageView) findViewById(R.id.fam);
-//        estrenos = (ImageView) findViewById(R.id.estrenos);
-//        romaticas =(ImageView) findViewById(R.id.romaticas);
-//        infantil = (ImageView) findViewById(R.id.infantiles);
-//
-//
-//
-//
-//
-//
-//        accion.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(MainActivity.this, GenerosActivity.class);
-//                i.putExtra("Genero","Accion");
-//                startActivity(i);
-//            }
-//        });
-//        comedia.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(MainActivity.this, GenerosActivity.class);
-//                i.putExtra("Genero","Comedia");
-//                startActivity(i);
-//            }
-//        });
-//        drama.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(MainActivity.this, GenerosActivity.class);
-//                i.putExtra("Genero","Drama");
-//                startActivity(i);
-//            }
-//        });
-//        documentales.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(MainActivity.this, GenerosActivity.class);
-//                i.putExtra("Genero","Documentales");
-//                startActivity(i);
-//            }
-//        });
-//        familiar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(MainActivity.this, GenerosActivity.class);
-//                i.putExtra("Genero","Familiar");
-//                startActivity(i);
-//            }
-//        });
-//        estrenos.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(MainActivity.this, GenerosActivity.class);
-//                i.putExtra("Genero","Estrenos");
-//                startActivity(i);
-//            }
-//        });
-//        romaticas.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(MainActivity.this, GenerosActivity.class);
-//                i.putExtra("Genero","Romanticas");
-//                startActivity(i);
-//            }
-//        });
-//        infantil.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(MainActivity.this, GenerosActivity.class);
-//                i.putExtra("Genero","Infantiles");
-//                startActivity(i);
-//            }
-//        });
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                message(nombreGenero, imagenGenero);
+
+            }
+        });
 
 
 
@@ -153,7 +85,29 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
+
+    public void message(String genero, int resource){
+
+        // con este tema personalizado evitamos los bordes por defecto
+        Dialog customDialog = new Dialog(this,R.style.Theme_Dialog_Translucent);
+        //deshabilitamos el título por defecto
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //obligamos al usuario a pulsar los botones para cerrarlo
+        customDialog.setCancelable(true);
+        //establecemos el contenido de nuestro dialog
+        customDialog.setContentView(R.layout.message_custom);
+        //asignamos textos e imagenes
+        TextView tvGenero = (TextView) customDialog.findViewById(R.id.genero_tv);
+        ImageView iconoGenero = (ImageView) customDialog.findViewById(R.id.icono_genero);
+        tvGenero.setText(genero);
+        iconoGenero.setImageResource(resource);
+        customDialog.show();
+
+
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -164,7 +118,7 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
-    
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -174,33 +128,83 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_accion) {
             call = VideoTurismoAdapter.getApiService().getpeliculasAccion();
             call.enqueue(MainActivity.this);
+            //usamos el click para poder cambiar el icono del fab
+            iconImage = R.drawable.fabaction;
+            imagenGenero = R.drawable.accion;
+            fab.setImageResource(iconImage);
+            nombreGenero ="Accón";
+
         } else if (id == R.id.nav_drama) {
             call = VideoTurismoAdapter.getApiService().getpeliculasDrama();
             call.enqueue(MainActivity.this);
+            //usamos el click para poder cambiar el icono del fab
+            iconImage = R.drawable.fabdrama;
+            imagenGenero = R.drawable.drama;
+            fab.setImageResource(iconImage);
+            nombreGenero = "Drama";
+
+
+
 
         } else if (id == R.id.nav_documental) {
             call = VideoTurismoAdapter.getApiService().getpeliculasSeries();
             call.enqueue(MainActivity.this);
+            //usamos el click para poder cambiar el icono del fab
+            iconImage = R.drawable.fabdocumentales;
+            imagenGenero = R.drawable.documental;
+            fab.setImageResource(iconImage);
+            nombreGenero = "Documentales";
+
 
         } else if (id == R.id.nav_estrenos) {
             call = VideoTurismoAdapter.getApiService().getpeliculasEstrenos();
             call.enqueue(MainActivity.this);
+            //usamos el click para poder cambiar el icono del fab
+            iconImage = R.drawable.fabestrenos;
+            imagenGenero = R.drawable.estrenos;
+            fab.setImageResource(iconImage);
+            nombreGenero = "Estrenos";
+
 
         } else if (id == R.id.nav_infantiles) {
             call = VideoTurismoAdapter.getApiService().getpeliculasInfantil();
             call.enqueue(MainActivity.this);
+            //usamos el click para poder cambiar el icono del fab
+            iconImage = R.drawable.fabinfantil;
+            imagenGenero = R.drawable.infantiles;
+            fab.setImageResource(iconImage);
+            nombreGenero = "Infantiles";
+
 
         } else if (id == R.id.nav_romanticas) {
             call = VideoTurismoAdapter.getApiService().getpeliculasRomanticas();
             call.enqueue(MainActivity.this);
+            //usamos el click para poder cambiar el icono del fab
+            iconImage = R.drawable.fabromatica;
+            imagenGenero = R.drawable.romanticas;
+            fab.setImageResource(iconImage);
+
+            nombreGenero= "Romanticas";
 
         }else if (id == R.id.nav_comedia) {
             call = VideoTurismoAdapter.getApiService().getpeliculasComedia();
             call.enqueue(MainActivity.this);
+            //usamos el click para poder cambiar el icono del fab
+            iconImage = R.drawable.fabcomedia;
+            imagenGenero = R.drawable.comedia;
+            fab.setImageResource(iconImage);
+            nombreGenero = "Comedia";
+
 
         }else if (id == R.id.nav_familiar) {
             call = VideoTurismoAdapter.getApiService().getpeliculasFamiliar();
             call.enqueue(MainActivity.this);
+            //usamos el click para poder cambiar el icono del fab
+            iconImage = R.drawable.fabfamiliar;
+            imagenGenero = R.drawable.familiar;
+            fab.setImageResource(iconImage);
+            nombreGenero = "Familiar";
+
 
         }else if (id == R.id.nav_pop) {
 
@@ -222,6 +226,7 @@ public class MainActivity extends AppCompatActivity
         if(response.isSuccessful()){
             ArrayList<Peliculas> pelis = response.body();
 
+
             mPeliculasAdapter.setDataSet(pelis);
             Log.d("OnResponse peliculas", "Size of peliculas ="+ pelis.size());
         }
@@ -230,7 +235,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onFailure(Call<ArrayList<Peliculas>> call, Throwable t) {
         Toast.makeText(this, "Error en la red ", Toast.LENGTH_SHORT).show();
-
         finish();
     }
 }
