@@ -14,17 +14,18 @@
 
 
     <string name="slide_1_title">Hola!!</string>
-    <string name="slide_1_desc">Bienvenido a tu aplicación de entretenimiento abordo </string>
+    <string name="slide_1_desc">Bienvenido a tu aplicación de entretenimiento a bordo </string>
 
-    <string name="slide_2_title">Movie Tickets</string>
-    <string name="slide_2_desc">Book movie tickets for your family and friends!</string>
+    <string name="slide_2_title">Disfruta De Nuestro Contenido </string>
+    <string name="slide_2_desc">De mas de 70 titulos entre documentales, series y peliculas</string>
 
-    <string name="slide_3_title">Great Discounts</string>
-    <string name="slide_3_desc">Best discounts on every single service we offer!</string>
+    <string name="slide_3_title">Conectate</string>
+    <string name="slide_3_desc">Conecta tu dispositivo a la red wifi Entretenimiento para comenzar a disfrutar de el contenido!!!!</string>
 
-    <string name="slide_4_title">World Travel</string>
-    <string name="slide_4_desc">Book tickets of any transportation and travel the world!</string>
+    <string name="slide_4_title">Navega Por Nuestro Catalogo</string>
+    <string name="slide_4_desc">Solo da click en la esquina superior izquierda y navega por los generos que tenemos para ti!!!!!!</string>
 
-    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
-    <string name="play_again">Play Again</string>
+
+    <string name="eslogan"> No podemos acortar distancias, pero si podemos hacer su viaje más placentero </string>
+
 </resources>

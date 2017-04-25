@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +21,9 @@ import android.widget.TextView;
 
 import com.videoturismo.videoturismo.R;
 
-public class WelcomeActivity extends AppCompatActivity {
+import java.util.HashMap;
+
+public class WelcomeActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
     private LinearLayout dotsLayout;
@@ -28,11 +31,13 @@ public class WelcomeActivity extends AppCompatActivity {
     private int[] layouts;
     private Button btnSkip, btnNext;
     private PrefManager prefManager;
+    private TextToSpeech myTts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        myTts = new TextToSpeech(WelcomeActivity.this, WelcomeActivity.this);
         // Checking for first time launch - before calling setContentView()
         prefManager = new PrefManager(this);
         if (!prefManager.isFirstTimeLaunch()) {
@@ -119,8 +124,26 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private void launchHomeScreen() {
         prefManager.setFirstTimeLaunch(false);
+
+
+        if (!myTts.isSpeaking()){
+            HashMap<String,String> stringStringHashMap = new HashMap<String, String>();
+            stringStringHashMap.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID,getResources().getString(R.string.eslogan));
+            myTts.setPitch(0.8f);
+            myTts.setSpeechRate(0.8f);
+
+            myTts.speak(getResources().getString(R.string.eslogan),TextToSpeech.QUEUE_ADD,stringStringHashMap);
+
+        }else{
+            myTts.stop();
+
+        }
         startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
         finish();
+
+
+
+
     }
 
     //	viewpager change listener
@@ -162,6 +185,11 @@ public class WelcomeActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.TRANSPARENT);
         }
+    }
+
+    @Override
+    public void onInit(int status) {
+
     }
 
     /**
