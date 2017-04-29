@@ -1,5 +1,6 @@
 package com.videoturismo.videoturismo.io;
 
+import com.videoturismo.videoturismo.model.Musica;
 import com.videoturismo.videoturismo.model.Peliculas;
 
 import java.util.ArrayList;
@@ -36,6 +37,18 @@ public interface VideoTurismoService {
 
     @GET("WebServices/obtenerPelicula.php?nombreGenero=Familiar")
     Call<ArrayList<Peliculas>> getpeliculasFamiliar();
+
+    @GET("WebServices/obtenerMusica.php?nombreGeneroMusica=Pop")
+    Call<ArrayList<Musica>> getMusicaPop();
+
+    @GET("WebServices/obtenerMusica.php?nombreGeneroMusica=Rock")
+    Call<ArrayList<Musica>> getMusicaRock();
+
+    @GET("WebServices/obtenerMusica.php?nombreGeneroMusica=Clasicas")
+    Call<ArrayList<Musica>> getMusicaClasica();
+
+    @GET("WebServices/obtenerMusica.php?nombreGeneroMusica=Regional")
+    Call<ArrayList<Musica>> getMusicaRegional();
 
 
 }

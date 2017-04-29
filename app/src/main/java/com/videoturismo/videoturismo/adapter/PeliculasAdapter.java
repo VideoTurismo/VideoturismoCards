@@ -18,7 +18,7 @@ import com.videoturismo.videoturismo.ui.activity.VideoActivity;
 import java.util.ArrayList;
 
 /**
- * Created by CASCENCIO on 12/04/2017.
+ * Created by JFCC on 12/04/2017.
  */
 
 public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.ViewHolder> {

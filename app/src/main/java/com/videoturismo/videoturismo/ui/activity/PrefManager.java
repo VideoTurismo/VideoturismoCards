@@ -3,9 +3,6 @@ package com.videoturismo.videoturismo.ui.activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/**
- * Created by Jorge Chavez on 21/04/2017.
- */
 
 /**
  * Created by Lincoln on 05/05/16.

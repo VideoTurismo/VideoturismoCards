@@ -1,6 +1,7 @@
 package com.videoturismo.videoturismo.ui.activity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -207,6 +208,9 @@ public class MainActivity extends AppCompatActivity
 
 
         }else if (id == R.id.nav_pop) {
+            Intent i = new Intent(MainActivity.this, PlayListActivity.class);
+            i.putExtra("Genero","Pop");
+            startActivity(i);
 
         }else if (id == R.id.nav_rock) {
 

@@ -7,27 +7,35 @@
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_accion"
+                    android:icon="@drawable/fabaction"
                     android:title="Accion" />
                 <item
                     android:id="@+id/nav_comedia"
+                    android:icon="@drawable/fabcomedia"
                     android:title="Comedia" />
                 <item
                     android:id="@+id/nav_documental"
+                    android:icon="@drawable/fabdocumentales"
                     android:title="Documental" />
                 <item
                     android:id="@+id/nav_drama"
+                    android:icon="@drawable/fabdrama"
                     android:title="Drama" />
                 <item
                     android:id="@+id/nav_familiar"
+                    android:icon="@drawable/fabfamiliar"
                     android:title="Familiar" />
                 <item
                     android:id="@+id/nav_romanticas"
+                    android:icon="@drawable/fabromatica"
                     android:title="Romanticas" />
                 <item
                     android:id="@+id/nav_infantiles"
+                    android:icon="@drawable/fabinfantil"
                     android:title="Infantiles" />
                 <item
                     android:id="@+id/nav_estrenos"
+                    android:icon="@drawable/fabestrenos"
                     android:title="Estrenos" />
 
             </group>
@@ -38,19 +46,19 @@
         <menu>
             <item
                 android:id="@+id/nav_pop"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_queue_music_black_24dp"
                 android:title="Pop" />
             <item
                 android:id="@+id/nav_rock"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_queue_music_black_24dp"
                 android:title="Rock" />
             <item
                 android:id="@+id/nav_clasicas"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_queue_music_black_24dp"
                 android:title="Clasicas" />
             <item
                 android:id="@+id/nav_regionales"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_queue_music_black_24dp"
                 android:title="Regionales" />
         </menu>
     </item>

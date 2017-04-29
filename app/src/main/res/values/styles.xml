@@ -20,5 +20,8 @@
     <style name="Theme_Dialog_Translucent" parent="android:Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
+    <style name="Boton_En_ToolBar_Musica">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 
 </resources>
