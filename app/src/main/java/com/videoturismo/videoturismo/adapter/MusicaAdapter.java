@@ -43,9 +43,6 @@ public class MusicaAdapter extends RecyclerView.Adapter<MusicaAdapter.ViewHolder
         public TextView tvArtista;
         public TextView tvAlbum;
 
-
-
-
         public ViewHolder(View v) {
             super(v);
             tvtitulo = (TextView) v.findViewById(R.id.tituloCancion);
@@ -53,21 +50,17 @@ public class MusicaAdapter extends RecyclerView.Adapter<MusicaAdapter.ViewHolder
             tvAlbum = (TextView) v.findViewById(R.id.album);
         }
     }
-
     // Este es nuestro constructor (puede variar según lo que queremos mostrar)
     public MusicaAdapter(Context context) {
         this.context = context;
 
         mDataSet = new ArrayList<>();
     }
-
     // se utiliza en el onresponse del activity q implementa para cargar los datos que llegaron
     public void setDataSet(ArrayList<Musica> dataSet) {
         mDataSet = dataSet;
         notifyDataSetChanged();
     }
-
-
     // El layout manager invoca este método
     // para renderizar cada elemento del RecyclerView
     @Override
