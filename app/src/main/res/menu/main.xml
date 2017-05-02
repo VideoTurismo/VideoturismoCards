@@ -2,8 +2,33 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_pop"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:title="@string/action_pop"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_queue_music_black_24dp" />
+    <item
+        android:id="@+id/action_rock"
+        android:orderInCategory="100"
+        android:title="@string/action_rock"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_queue_music_black_24dp"/>
+    <item
+        android:id="@+id/action_clasicas"
+        android:orderInCategory="100"
+        android:title="@string/action_clasicas"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_queue_music_black_24dp" />
+    <item
+        android:id="@+id/action_regionales"
+        android:orderInCategory="100"
+        android:title="@string/action_regionales"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_queue_music_black_24dp" />
+    <item
+        android:id="@+id/action_peliculas"
+        android:orderInCategory="100"
+        android:title="@string/action_pelis"
+        app:showAsAction="always"
+        android:icon="@drawable/fabdocumentales" />
 </menu>

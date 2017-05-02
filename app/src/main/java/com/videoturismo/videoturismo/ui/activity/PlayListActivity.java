@@ -1,5 +1,6 @@
 package com.videoturismo.videoturismo.ui.activity;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,38 +10,29 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.MediaController;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.videoturismo.videoturismo.R;
 import com.videoturismo.videoturismo.adapter.MusicaAdapter;
 import com.videoturismo.videoturismo.io.VideoTurismoAdapter;
 import com.videoturismo.videoturismo.model.Musica;
 import com.videoturismo.videoturismo.ui.decoration.DividerItemDecoration;
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PlayListActivity extends AppCompatActivity implements Callback<ArrayList<Musica>>, MediaPlayer.OnPreparedListener, MediaController.MediaPlayerControl,MediaPlayer.OnCompletionListener {
+public class PlayListActivity extends AppCompatActivity implements Callback<ArrayList<Musica>>, MediaPlayer.OnPreparedListener,
+        MediaController.MediaPlayerControl,MediaPlayer.OnCompletionListener {
 
     private Call<ArrayList<Musica>> call;
     private MusicaAdapter mMusicaAdapter;
     private RecyclerView rv;
-    private ImageButton ibPlay;
-    private ImageButton ibNext;
-    private ImageButton ibPre;
     int contadorDeCanciones = 0;
     static MediaPlayer mp;
     static MediaController mc;
-
     static int vpos = 0;
-
     private Musica mMusica;
     private ArrayList<String> musicaPath = new ArrayList<>();
 
@@ -49,7 +41,7 @@ public class PlayListActivity extends AppCompatActivity implements Callback<Arra
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_list);
 
-        final TextView tituloMain = (TextView) findViewById(R.id.selected_track_title);
+
 
         mp = new MediaPlayer();
         mc = new MediaController(this){
@@ -58,35 +50,7 @@ public class PlayListActivity extends AppCompatActivity implements Callback<Arra
 
             }
         };
-        ibNext = (ImageButton) findViewById(R.id.ib_next);
-        ibPre = (ImageButton)findViewById(R.id.ib_pre);
-        ibPlay = (ImageButton)findViewById(R.id.ib_ply);
 
-//        ibPre.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mMusicaAdapter.play(0);
-//                tituloMain.setText(mMusicaAdapter.getTitulo());
-//            }
-//        });
-//        ibNext.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //if()
-//
-//                mMusicaAdapter.play(2);
-//                tituloMain.setText(mMusicaAdapter.getTitulo());
-//            }
-//        });
-//        ibPlay.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                mMusicaAdapter.play(rv.getChildAdapterPosition(v));
-//                tituloMain.setText(mMusicaAdapter.getTitulo());
-//
-//            }
-//        });
         rv = (RecyclerView) findViewById(R.id.recycler_view_musica);
         rv.setHasFixedSize(false);
         final LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
@@ -129,22 +93,14 @@ public class PlayListActivity extends AppCompatActivity implements Callback<Arra
         rv.setAdapter(mMusicaAdapter);
         rv.setLayoutManager(mLinearLayoutManager);
         rv.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
-
-
-
-
-        call = VideoTurismoAdapter.getApiService().getMusicaRock();
-        call.enqueue(this);
         mp.setOnPreparedListener(this);
-
 
         mp.setOnCompletionListener(this);
 
 
-        //llamarJson(getIntent().getStringExtra("Genero"));
+        llamarJson(getIntent().getStringExtra("Genero"));
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -159,30 +115,88 @@ public class PlayListActivity extends AppCompatActivity implements Callback<Arra
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        switch (id){
+            case R.id.action_clasicas:
+                call = VideoTurismoAdapter.getApiService().getMusicaClasica();
+                call.enqueue(PlayListActivity.this);
+                if (!mp.isPlaying()){
+                    mp.stop();
+                    mp.reset();
+                }else {
+                    mp.stop();
+                    mp.reset();
+                }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+                break;
+            case R.id.action_pop:
+                call = VideoTurismoAdapter.getApiService().getMusicaPop();
+                call.enqueue(PlayListActivity.this);
+                if (!mp.isPlaying()){
+                    mp.stop();
+                    mp.reset();
+                }else {
+                    mp.stop();
+                    mp.reset();
+                }
+
+                break;
+            case R.id.action_rock:
+                call = VideoTurismoAdapter.getApiService().getMusicaRock();
+                call.enqueue(PlayListActivity.this);
+                if (!mp.isPlaying()){
+                    mp.stop();
+                    mp.reset();
+                }else {
+                    mp.stop();
+                    mp.reset();
+                }
+
+                break;
+            case R.id.action_regionales:
+                call = VideoTurismoAdapter.getApiService().getMusicaRegional();
+                call.enqueue(PlayListActivity.this);
+                if (!mp.isPlaying()){
+                    mp.stop();
+                    mp.reset();
+                }else {
+                    mp.stop();
+                    mp.reset();
+                }
+                break;
+            case R.id.action_peliculas:
+                Intent i = new Intent(PlayListActivity.this,MainActivity.class);
+                if (mp.isPlaying()){
+                    mp.stop();
+                }else{
+                    startActivity(i);
+                }
+                startActivity(i);
+                break;
+            default:
+                break;
         }
 
         return super.onOptionsItemSelected(item);
     }
-    public void llamarJson (String genero){
 
+    public void llamarJson (String genero){
 
         switch (genero){
             case "Pop":
-//                rv.setLayoutManager(mLinearLayoutManager);
-//                rv.setAdapter(mMusicaAdapter);
-//                call = VideoTurismoAdapter.getApiService().getMusicaPop();
-//                call.enqueue(PlayListActivity.this);
-
+                call = VideoTurismoAdapter.getApiService().getMusicaPop();
+                call.enqueue(PlayListActivity.this);
                 break;
             case"Rock":
+                call = VideoTurismoAdapter.getApiService().getMusicaRock();
+                call.enqueue(PlayListActivity.this);
                 break;
             case "Clasicas":
+                call = VideoTurismoAdapter.getApiService().getMusicaClasica();
+                call.enqueue(PlayListActivity.this);
                 break;
             case"Regional":
+                call = VideoTurismoAdapter.getApiService().getMusicaRegional();
+                call.enqueue(PlayListActivity.this);
                 break;
             default:
                 break;
@@ -196,18 +210,29 @@ public class PlayListActivity extends AppCompatActivity implements Callback<Arra
             ArrayList<Musica> musica = response.body();
 
 
-            for(int i =0; i<musica.size();i++){
+            if (musicaPath.isEmpty()) {
 
-                mMusica = musica.get(i);
-                musicaPath.add("http://192.168.5.161/streaming"+mMusica.getRutaCancion().replaceAll(" ","%20"));
-                Log.d("OnResponse Musica Ruta", "Size of Musica ="+ musicaPath.get(i));
+                for (int i = 0; i < musica.size(); i++) {
+
+
+                    mMusica = musica.get(i);
+                    musicaPath.add(i, "http://192.168.5.161/streaming" + mMusica.getRutaCancion().replaceAll(" ", "%20"));
+                    Log.d("OnResponse Musica Ruta", "Size of Musica =" + musicaPath.get(i));
+                }
+
+                mMusicaAdapter.setDataSet(musica);
+                Log.d("OnResponse Musica", "Size of Musica =" + musica.size());
+            }else{
+                musicaPath.removeAll(musica);
+                for (int i = 0; i < musica.size(); i++) {
+                    mMusica = musica.get(i);
+                    musicaPath.add(i, "http://192.168.5.161/streaming" + mMusica.getRutaCancion().replaceAll(" ", "%20"));
+                    Log.d("OnResponse Musica Ruta", "Size of Musica =" + musicaPath.get(i));
+                }
+
+                mMusicaAdapter.setDataSet(musica);
+                Log.d("OnResponse Musica", "Size of Musica =" + musica.size());
             }
-
-            mMusicaAdapter.setDataSet(musica);
-            Log.d("OnResponse Musica", "Size of Musica ="+ musica.size());
-
-
-
         }
     }
 
@@ -218,17 +243,10 @@ public class PlayListActivity extends AppCompatActivity implements Callback<Arra
         finish();
     }
 
-
     public void onBackPressed() {
-
-
-//        if (mp.isPlaying()){
-//            mp.stop();
-//            mp.release();
-//        }
-//        finish();
         super.onBackPressed();
     }
+
     public void onDestroy(){
 
         if (mp.isPlaying()){
@@ -238,8 +256,6 @@ public class PlayListActivity extends AppCompatActivity implements Callback<Arra
         mp = null;
         super.onDestroy();
     }
-
-
 
     @Override
     public void onPrepared(MediaPlayer mp) {
@@ -309,7 +325,6 @@ public class PlayListActivity extends AppCompatActivity implements Callback<Arra
     public int getAudioSessionId() {
         return 0;
     }
-
 
     @Override
     public void onCompletion(MediaPlayer mp) {

@@ -213,10 +213,19 @@ public class MainActivity extends AppCompatActivity
             startActivity(i);
 
         }else if (id == R.id.nav_rock) {
+            Intent i = new Intent(MainActivity.this, PlayListActivity.class);
+            i.putExtra("Genero","Rock");
+            startActivity(i);
 
         }else if (id == R.id.nav_regionales) {
+            Intent i = new Intent(MainActivity.this, PlayListActivity.class);
+            i.putExtra("Genero","Regional");
+            startActivity(i);
 
         }else if (id == R.id.nav_clasicas) {
+            Intent i = new Intent(MainActivity.this, PlayListActivity.class);
+            i.putExtra("Genero","Clasicas");
+            startActivity(i);
 
         }
 
