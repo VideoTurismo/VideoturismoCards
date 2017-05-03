@@ -21,8 +21,6 @@ import android.widget.TextView;
 
 import com.videoturismo.videoturismo.R;
 
-import java.util.HashMap;
-
 public class WelcomeActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
@@ -126,18 +124,18 @@ public class WelcomeActivity extends AppCompatActivity implements TextToSpeech.O
         prefManager.setFirstTimeLaunch(false);
 
 
-        if (!myTts.isSpeaking()){
-            HashMap<String,String> stringStringHashMap = new HashMap<String, String>();
-            stringStringHashMap.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID,getResources().getString(R.string.eslogan));
-            myTts.setPitch(0.8f);
-            myTts.setSpeechRate(0.8f);
-
-            myTts.speak(getResources().getString(R.string.eslogan),TextToSpeech.QUEUE_ADD,stringStringHashMap);
-
-        }else{
-            myTts.stop();
-
-        }
+//        if (!myTts.isSpeaking()){
+//            HashMap<String,String> stringStringHashMap = new HashMap<String, String>();
+//            stringStringHashMap.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID,getResources().getString(R.string.eslogan));
+//            myTts.setPitch(0.8f);
+//            myTts.setSpeechRate(0.8f);
+//
+//            myTts.speak(getResources().getString(R.string.eslogan),TextToSpeech.QUEUE_ADD,stringStringHashMap);
+//
+//        }else{
+//            myTts.stop();
+//
+//        }
         startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
         finish();
 

@@ -11,6 +11,8 @@
     <string name="action_regionales">Regionales</string>
     <string name="action_pelis">Peliculas</string>
 
+    <string name="mensage_wifi">Ingresa a la configuracion para conectarte a la Red Wi-Fi de Entretenimiento</string>
+
 
     <string name="next">SIGUIENTE</string>
     <string name="skip">SALTAR</string>
@@ -21,7 +23,7 @@
     <string name="slide_1_desc">Bienvenido a tu aplicación de entretenimiento a bordo </string>
 
     <string name="slide_2_title">Disfruta De Nuestro Contenido </string>
-    <string name="slide_2_desc">De mas de 70 titulos entre documentales, series y peliculas</string>
+    <string name="slide_2_desc">Entre documentales, series y películas</string>
 
     <string name="slide_3_title">Conectate</string>
     <string name="slide_3_desc">Conecta tu dispositivo a la red wifi Entretenimiento para comenzar a disfrutar de el contenido!!!!</string>

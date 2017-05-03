@@ -1,13 +1,19 @@
 package com.videoturismo.videoturismo.ui.activity;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -50,42 +56,46 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        rv = (RecyclerView) findViewById(R.id.recycler_view_peliculas);
-        rv.setHasFixedSize(false);
-        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
-
-        rv.setLayoutManager(mLinearLayoutManager);
-        mPeliculasAdapter = new PeliculasAdapter(this);
-        rv.setAdapter(mPeliculasAdapter);
+        if (!verificaConexion(this)) {
+            Toast.makeText(getBaseContext(),
+                    "Comprueba tu conexión a Internet. Saliendo ... ", Toast.LENGTH_LONG)
+                    .show();
+        }else {
 
 
-        imagenGenero = R.drawable.estrenos;
-        nombreGenero = "Estrenos";
+            fab = (FloatingActionButton) findViewById(R.id.fab);
+            rv = (RecyclerView) findViewById(R.id.recycler_view_peliculas);
+            rv.setHasFixedSize(false);
+            LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
 
-        call = VideoTurismoAdapter.getApiService().getpeliculasEstrenos();
-        call.enqueue(this);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                message(nombreGenero, imagenGenero);
-
-            }
-        });
+            rv.setLayoutManager(mLinearLayoutManager);
+            mPeliculasAdapter = new PeliculasAdapter(this);
+            rv.setAdapter(mPeliculasAdapter);
 
 
+            imagenGenero = R.drawable.estrenos;
+            nombreGenero = "Estrenos";
 
+            call = VideoTurismoAdapter.getApiService().getpeliculasEstrenos();
+            call.enqueue(this);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    message(nombreGenero, imagenGenero);
 
+                }
+            });
 
-
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                  this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
 
     }
 
@@ -247,7 +257,44 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onFailure(Call<ArrayList<Peliculas>> call, Throwable t) {
-        Toast.makeText(this, "Error en la red ", Toast.LENGTH_SHORT).show();
-        finish();
+        Toast.makeText(this, "Error Intente lo Más Tarde", Toast.LENGTH_SHORT).show();
+
+    }
+
+    public boolean verificaConexion(Context ctx) {
+        boolean bConectado = false;
+        String name = "";
+        ConnectivityManager connec = (ConnectivityManager) ctx
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        // No sólo wifi, también GPRS
+        NetworkInfo[] redes = connec.getAllNetworkInfo();
+        // este bucle debería no ser tan ñapa
+        for (int i = 0; i < 2; i++) {
+            // ¿Tenemos conexión? ponemos a true
+            if (redes[i].getState() == NetworkInfo.State.CONNECTED) {
+                name = redes[i].getExtraInfo();
+            }
+        }
+        if(name.contains("Entreteni")){
+            Toast.makeText(MainActivity.this,name
+                    , Toast.LENGTH_SHORT)
+                    .show();
+            bConectado = true;
+        }else{
+            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+            alertDialog.setIcon(R.drawable.ic_warning_black_24dp);
+            alertDialog.setTitle("Error de conexión");
+            alertDialog.setCancelable(false);
+            alertDialog.setMessage(getResources().getString(R.string.mensage_wifi));
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Abrir",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            startActivityForResult(new Intent(Settings.ACTION_WIFI_SETTINGS),0);
+                        }
+                    });
+            alertDialog.show();
+
+        }
+        return bConectado;
     }
 }
