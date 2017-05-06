@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity
     private int imagenGenero;
     private String nombreGenero;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,7 +117,6 @@ public class MainActivity extends AppCompatActivity
 
 
     }
-
 
     @Override
     public void onBackPressed() {
