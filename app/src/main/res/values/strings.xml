@@ -11,7 +11,25 @@
     <string name="action_regionales">Regionales</string>
     <string name="action_pelis">Peliculas</string>
 
-    <string name="mensage_wifi">Ingresa a la configuracion para conectarte a la Red Wi-Fi de Entretenimiento</string>
+
+    <string name="drawer_pop">Pop</string>
+    <string name="drawer_rock">Rock</string>
+    <string name="drawer_clasicas">Clasicas</string>
+    <string name="drawer_regionales">Regionales</string>
+
+    <string name="drawer_accion">Acción</string>
+    <string name="drawer_comedia">Comedia</string>
+    <string name="drawer_estrenos">Estrenos</string>
+    <string name="drawer_familiar">Familiar</string>
+    <string name="drawer_infantil">Infantil</string>
+    <string name="drawer_seriesydocumentales">Documentales</string>
+    <string name="drawer_drama">Drama</string>
+    <string name="drawer_romanticas">Romanticas</string>
+
+
+    <string name="pupupmessage">"Estas en el apartado de :"</string>
+
+    <string name="mensage_wifi">Ingresa a la configuración para conectarte a la Red Wi-Fi de Entretenimiento</string>
 
 
     <string name="next">SIGUIENTE</string>
@@ -32,6 +50,6 @@
     <string name="slide_4_desc">Solo da click en la esquina superior izquierda y navega por los generos que tenemos para ti!!!!!!</string>
 
 
-    <string name="eslogan"> No podemos acortar distancias, pero si podemos hacer su viaje más placentero </string>
+    <string name="eslogan">No podemos acortar distancias, pero si podemos hacer su viaje más placentero </string>
 
 </resources>

@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity
 
 
             imagenGenero = R.drawable.estrenos;
-            nombreGenero = "Estrenos";
+            nombreGenero = getResources().getString(R.string.drawer_estrenos);
 
             call = VideoTurismoAdapter.getApiService().getpeliculasEstrenos();
             call.enqueue(this);
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity
             iconImage = R.drawable.fabaction;
             imagenGenero = R.drawable.accion;
             fab.setImageResource(iconImage);
-            nombreGenero ="Accón";
+            nombreGenero =getResources().getString(R.string.drawer_accion);;
 
         } else if (id == R.id.nav_drama) {
             call = VideoTurismoAdapter.getApiService().getpeliculasDrama();
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity
             iconImage = R.drawable.fabdrama;
             imagenGenero = R.drawable.drama;
             fab.setImageResource(iconImage);
-            nombreGenero = "Drama";
+            nombreGenero = getResources().getString(R.string.drawer_drama);
 
 
 
@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity
             iconImage = R.drawable.fabdocumentales;
             imagenGenero = R.drawable.documental;
             fab.setImageResource(iconImage);
-            nombreGenero = "Documentales";
+            nombreGenero = getResources().getString(R.string.drawer_seriesydocumentales);
 
 
         } else if (id == R.id.nav_estrenos) {
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity
             iconImage = R.drawable.fabestrenos;
             imagenGenero = R.drawable.estrenos;
             fab.setImageResource(iconImage);
-            nombreGenero = "Estrenos";
+            nombreGenero = getResources().getString(R.string.drawer_estrenos);
 
 
         } else if (id == R.id.nav_infantiles) {
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity
             iconImage = R.drawable.fabinfantil;
             imagenGenero = R.drawable.infantiles;
             fab.setImageResource(iconImage);
-            nombreGenero = "Infantiles";
+            nombreGenero = getResources().getString(R.string.drawer_infantil);
 
 
         } else if (id == R.id.nav_romanticas) {
@@ -192,8 +192,7 @@ public class MainActivity extends AppCompatActivity
             iconImage = R.drawable.fabromatica;
             imagenGenero = R.drawable.romanticas;
             fab.setImageResource(iconImage);
-
-            nombreGenero= "Romanticas";
+            nombreGenero= getResources().getString(R.string.drawer_romanticas);
 
         }else if (id == R.id.nav_comedia) {
             call = VideoTurismoAdapter.getApiService().getpeliculasComedia();
@@ -202,7 +201,7 @@ public class MainActivity extends AppCompatActivity
             iconImage = R.drawable.fabcomedia;
             imagenGenero = R.drawable.comedia;
             fab.setImageResource(iconImage);
-            nombreGenero = "Comedia";
+            nombreGenero = getResources().getString(R.string.drawer_comedia);
 
 
         }else if (id == R.id.nav_familiar) {
@@ -212,7 +211,7 @@ public class MainActivity extends AppCompatActivity
             iconImage = R.drawable.fabfamiliar;
             imagenGenero = R.drawable.familiar;
             fab.setImageResource(iconImage);
-            nombreGenero = "Familiar";
+            nombreGenero = getResources().getString(R.string.drawer_familiar);
 
 
         }else if (id == R.id.nav_pop) {

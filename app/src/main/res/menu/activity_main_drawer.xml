@@ -8,35 +8,35 @@
                 <item
                     android:id="@+id/nav_accion"
                     android:icon="@drawable/fabaction"
-                    android:title="Accion" />
+                    android:title="@string/drawer_accion" />
                 <item
                     android:id="@+id/nav_comedia"
                     android:icon="@drawable/fabcomedia"
-                    android:title="Comedia" />
+                    android:title="@string/drawer_comedia" />
                 <item
                     android:id="@+id/nav_documental"
                     android:icon="@drawable/fabdocumentales"
-                    android:title="Documental" />
+                    android:title="@string/drawer_seriesydocumentales" />
                 <item
                     android:id="@+id/nav_drama"
                     android:icon="@drawable/fabdrama"
-                    android:title="Drama" />
+                    android:title="@string/drawer_drama" />
                 <item
                     android:id="@+id/nav_familiar"
                     android:icon="@drawable/fabfamiliar"
-                    android:title="Familiar" />
+                    android:title="@string/drawer_familiar" />
                 <item
                     android:id="@+id/nav_romanticas"
                     android:icon="@drawable/fabromatica"
-                    android:title="Romanticas" />
+                    android:title="@string/drawer_romanticas" />
                 <item
                     android:id="@+id/nav_infantiles"
                     android:icon="@drawable/fabinfantil"
-                    android:title="Infantiles" />
+                    android:title="@string/drawer_infantil" />
                 <item
                     android:id="@+id/nav_estrenos"
                     android:icon="@drawable/fabestrenos"
-                    android:title="Estrenos" />
+                    android:title="@string/drawer_estrenos" />
 
             </group>
         </menu>
@@ -47,19 +47,19 @@
             <item
                 android:id="@+id/nav_pop"
                 android:icon="@drawable/ic_queue_music_black_24dp"
-                android:title="Pop" />
+                android:title="@string/action_pop" />
             <item
                 android:id="@+id/nav_rock"
                 android:icon="@drawable/ic_queue_music_black_24dp"
-                android:title="Rock" />
+                android:title="@string/action_rock" />
             <item
                 android:id="@+id/nav_clasicas"
                 android:icon="@drawable/ic_queue_music_black_24dp"
-                android:title="Clasicas" />
+                android:title="@string/action_clasicas" />
             <item
                 android:id="@+id/nav_regionales"
                 android:icon="@drawable/ic_queue_music_black_24dp"
-                android:title="Regionales" />
+                android:title="@string/action_regionales" />
         </menu>
     </item>
 

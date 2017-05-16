@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Videoturismo</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="VT">Videoturismo S.A de C.V</string>
+
+    <string name="action_pop">POP</string>
+    <string name="action_rock">ROCK</string>
+    <string name="action_clasicas">CLÁSSICAS</string>
+    <string name="action_regionales">REGIONAIS</string>
+    <string name="action_pelis">FILMES</string>
+
+
+    <string name="drawer_pop">POP</string>
+    <string name="drawer_rock">ROCK</string>
+    <string name="drawer_clasicas">CLÁSSICAS</string>
+    <string name="drawer_regionales">REGIONAIS</string>
+
+    <string name="drawer_accion">AÇÃO</string>
+    <string name="drawer_comedia">COMÉDIA</string>
+    <string name="drawer_estrenos">ESTRÉIAS</string>
+    <string name="drawer_familiar">FAMILIAR</string>
+    <string name="drawer_infantil">INFANTIL</string>
+    <string name="drawer_seriesydocumentales">DOCUMENTÁRIOS</string>
+    <string name="drawer_drama">DRAMA</string>
+    <string name="drawer_romanticas">ROMÂNTICOS</string>
+
+
+    <string name="pupupmessage">"ESTÁ NA CAIXA DE :"</string>
+
+    <string name="mensage_wifi">ENTRE NA CONFIGURAÇÃO PARA CONECTAR-SE À REDE WI-FI DE “ENTRETENIMENTO”</string>
+
+
+    <string name="next">SEGUINTE</string>
+    <string name="skip">PULAR</string>
+    <string name="start">VAMOS!!!</string>
+
+
+    <string name="slide_1_title">OLÁ!!</string>
+    <string name="slide_1_desc">BENVINDO AO SEU APLICATIVO DE ENTRETENIMENTO A BORDO </string>
+
+    <string name="slide_2_title">DESFRUTE DO NOSSO CONTEÚDO</string>
+    <string name="slide_2_desc">ENTRE DOCUMENTÁRIOS, SÉRIES E FILMES</string>
+
+    <string name="slide_3_title">CONECTE-SE</string>
+    <string name="slide_3_desc">CONECTE SEU DISPOSITIVO À REDE WIFI “ENTRETENIMENTO” PARA COMEÇAR A DESFRUTAR DO CONTEÚDO !!!!</string>
+
+    <string name="slide_4_title">NAVEGUE PELO NOSSO CATÁLOGO</string>
+    <string name="slide_4_desc">BASTA CLICAR NO CANTO SUPERIOR ESQUERDO E NAVEGAR ATRAVÉS DOS DIFERENTES GENEROS QUE TEMOS PARA LHE OFERECER !!!!!</string>
+
+
+    <string name="eslogan">NÃO PODEMOS ENCURTAR DISTÂNCIAS MAS PODEMOS TORNAR SUA VIAGEM MAIS PRAZEIROSA.</string>
+
+</resources>

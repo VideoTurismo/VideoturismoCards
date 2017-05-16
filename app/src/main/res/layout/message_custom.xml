@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.09"
         android:paddingTop="5dp"
-        android:text="Estas en el apartado  de :"
+        android:text="@string/pupupmessage"
         android:textSize="25dp"
         android:textStyle="bold" />
 
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.12"
         android:gravity="center_vertical|center_horizontal"
-        android:text="Estrenos"
+        android:text="@string/drawer_estrenos"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="35sp"
         android:textStyle="bold" />
